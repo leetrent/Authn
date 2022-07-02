@@ -44,6 +44,7 @@ namespace Authn.Controllers
                 {
                     new Claim(ClaimTypes.NameIdentifier, username),
                     new Claim(ClaimTypes.Name, "Casey Bo Trent"),
+                    new Claim(ClaimTypes.Role, "Admin")
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -63,9 +64,17 @@ namespace Authn.Controllers
             return Redirect("/");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Secured()
         {
+            return View();
+        }
+
+        [HttpGet("denied")]
+        [Authorize]
+        public IActionResult Denied()
+        {
+            ViewData["Title"] = "Access Denied";
             return View();
         }
 
