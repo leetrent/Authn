@@ -43,6 +43,7 @@ namespace Authn.Controllers
                 var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier, username),
+                    new Claim(ClaimTypes.Name, "Casey Bo Trent"),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -52,6 +53,14 @@ namespace Authn.Controllers
             }
             TempData["Error"] = "Error: Username or password is invalid";
             return View("login");
+        }
+
+        [HttpGet("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
         }
 
         [Authorize]
