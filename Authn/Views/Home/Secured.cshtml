@@ -3,4 +3,11 @@
 *@
 @{
 }
-<h1>Secured.cshtml</h1>
+<h1>Secured:</h1>
+<h2>Welcome @User!.Identity!.Name</h2>
+<ul>
+    @foreach(var claim in User!.Claims)
+    {
+        <li>@claim.Type: @claim.Value</li>
+    }
+</ul>
