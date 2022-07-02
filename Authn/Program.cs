@@ -12,6 +12,39 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Login";
         options.LogoutPath = "/Logout";
         options.AccessDeniedPath = "/Denied";
+        options.Events = new CookieAuthenticationEvents()
+        {
+            OnSigningIn = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnSigningIn =>");
+            },
+            OnSignedIn = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnSignedIn =>");
+            },
+            OnRedirectToLogin = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnRedirectToLogin =>");
+            },
+            OnSigningOut = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnSigningOut =>");
+            },
+            OnRedirectToReturnUrl = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnRedirectToReturnUrl =>");
+            },
+            OnValidatePrincipal = async context =>
+            {
+                await Task.CompletedTask;
+                System.Console.WriteLine("OnValidatePrincipal =>");
+            }
+        };
     });
 
 var app = builder.Build();
