@@ -22,6 +22,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "251066643236-jilm9lvfibt099dd8rtk31rcg55hti1m.apps.googleusercontent.com";
         options.ClientSecret = "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";
         options.CallbackPath = "/auth";
+        options.AuthorizationEndpoint += "?prompt=consent";
     });
 
 var app = builder.Build();
